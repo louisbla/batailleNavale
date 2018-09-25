@@ -6,6 +6,7 @@ import Model.*;
 
 public class main {
 	
+	//fonction main, executee au demarrage
 	public static void main(String[] args) {
 
 		Joueur J1 = new Joueur();

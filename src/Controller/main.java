@@ -15,6 +15,8 @@ public class main {
 		J1.moveDown(J1.getBateauList().get(1));
 		System.out.println();
 		afficheGrille(J1.getGrille());
+		
+		/*methode jeu*/
 	
 	}
 	

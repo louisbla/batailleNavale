@@ -98,7 +98,7 @@ public class Joueur {
 				}
 			}
 		}else {
-			throw new ExceptionPlacement("Placement ou mouvement interdit. Veuillez réessayer.");
+			throw new ExceptionPlacement("Placement du bateau interdit. Veuillez réessayer.");
 		}
 	}
 
@@ -118,38 +118,48 @@ public class Joueur {
 	}
 	
 	/*verifie et bouge le bateau vers le haut, bas, gauche ou droite*/
-	public void moveUp(Bateau boat) throws ExceptionPlacement {
+	public void moveUp(Bateau boat) throws ExceptionPlacement, ExceptionMouvement {
 		if(this.checkPlacement(boat, boat.getX(), boat.getY()-1, boat.getVertical() )) {
 			this.enleverBateau(boat);
 			this.placerBateau(boat, boat.getX(), boat.getY()-1, boat.getVertical());
+		}else {
+			throw new ExceptionMouvement("Deplacement vers le haut impossible, réessayez");
 		}
 	}
 	
-	public void moveDown(Bateau boat) throws ExceptionPlacement {
+	public void moveDown(Bateau boat) throws ExceptionPlacement, ExceptionMouvement {
 		if(this.checkPlacement(boat, boat.getX(), boat.getY()+1, boat.getVertical() )) {
 			this.enleverBateau(boat);
 			this.placerBateau(boat, boat.getX(), boat.getY()+1, boat.getVertical());
+		}else{
+			throw new ExceptionMouvement("Deplacement vers le bas impossible, réessayez");
 		}
 	}
 	
-	public void moveLeft(Bateau boat) throws ExceptionPlacement {
+	public void moveLeft(Bateau boat) throws ExceptionPlacement, ExceptionMouvement {
 		if(this.checkPlacement(boat, boat.getX()-1, boat.getY(), boat.getVertical() )) {
 			this.enleverBateau(boat);
 			this.placerBateau(boat, boat.getX()-1, boat.getY(), boat.getVertical());
+		}else{
+			throw new ExceptionMouvement("Deplacement vers la gauche impossible, réessayez");
 		}
 	}
 	
-	public void moveRight(Bateau boat) throws ExceptionPlacement {
+	public void moveRight(Bateau boat) throws ExceptionPlacement, ExceptionMouvement {
 		if(this.checkPlacement(boat, boat.getX()+1, boat.getY(), boat.getVertical() )) {
 			this.enleverBateau(boat);
 			this.placerBateau(boat, boat.getX()+1, boat.getY(), boat.getVertical());
+		}else{
+			throw new ExceptionMouvement("Deplacement vers la droite impossible, réessayez");
 		}
 	}
 	
-	public void Rotation(Bateau boat) throws ExceptionPlacement {
+	public void Rotation(Bateau boat) throws ExceptionPlacement, ExceptionMouvement {
 		if(this.checkPlacement(boat, boat.getX(), boat.getY(), !boat.getVertical() )) {
 			this.enleverBateau(boat);
 			this.placerBateau(boat, boat.getX(), boat.getY(), !boat.getVertical());
+		}else{
+			throw new ExceptionMouvement("Rotation impossible, réessayez");
 		}
 	}
 	

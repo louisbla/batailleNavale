@@ -59,9 +59,9 @@ public class Game implements Runnable{
 				in = new Scanner(System.in);
 
 				System.out.println("Placer le bateau de type : " + j.getBateauList().get(i).getName() + " | Taille : " + j.getBateauList().get(i).getTaille());
-				System.out.print("Position X : ");
+				System.out.print("Position X (entre 0 et " + (TAILLE - 1) + ") : ");
 				x = in.nextInt();
-				System.out.print("Position Y : ");
+				System.out.print("Position Y (entre 0 et " + (TAILLE - 1) + ") : ");
 				y = in.nextInt();
 				System.out.print("Vertical(true ou false) : ");
 				isVertical = in.nextBoolean();
@@ -101,6 +101,9 @@ public class Game implements Runnable{
 			}
 		}catch(InputMismatchException e) {
 			System.out.println("Le paramètre entré n'était pas bon, veuillez réessayer.");
+			phaseDeplacement(j1);
+		}catch(ExceptionChoixBateau e) {
+			System.out.println(e.getMessage());
 			phaseDeplacement(j1);
 		}
 
@@ -143,19 +146,19 @@ public class Game implements Runnable{
 	}
 
 	public void phaseDeTir(Joueur j1, Joueur j2) {
-		System.out.println("Au tour de " + j1.getName() + " de tirer !");
-		System.out.print("Choix Bateau(1, 2, 3, 4, 5) : ");
-		int choix = in.nextInt();
-
-		System.out.print("Coordonnée sur x :");
-		int x = in.nextInt();
-
-		System.out.print("Coordonnée sur y :");
-		int y = in.nextInt();
-
 		try {
+			System.out.println("Au tour de " + j1.getName() + " de tirer !");
+			System.out.print("Choix Bateau(1, 2, 3, 4, 5) : ");
+			int choix = in.nextInt();
+	
+			System.out.print("Coordonnée sur x :");
+			int x = in.nextInt();
+	
+			System.out.print("Coordonnée sur y :");
+			int y = in.nextInt();
+	
 			j1.tirer(j2, x, y, j1.getBateau(choix));	// tirer avec le bateau d'id 'choix'
-		} catch (ExceptionTir e) {
+		} catch (ExceptionTir | ExceptionChoixBateau e) {
 			System.out.println(e.getMessage());
 			phaseDeTir(j1, j2);
 		}

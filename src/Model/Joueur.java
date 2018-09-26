@@ -195,7 +195,7 @@ public class Joueur {
 	}
 	
 	/*Tire sur un adversaire en x,y avec un bateau boat*/
-	public boolean tirer(Joueur j2, int x, int y, Bateau boat) throws ExceptionTir {
+	public boolean tirer(Joueur j2, int x, int y, Bateau boat) throws ExceptionTir, ExceptionChoixBateau {
 		if(checkTir(boat, x, y)) {
 			dernierTir[0]=x;
 			dernierTir[1]=y;
@@ -214,7 +214,7 @@ public class Joueur {
 				return false;
 			}
 		}else {
-			throw new ExceptionTir("Tir interdit, reessayez.");
+			throw new ExceptionTir("Tir interdit (hors de portee ou hors de la grille)");
 		}
 	}
 	
@@ -229,14 +229,19 @@ public class Joueur {
 	}
 	
 	/*getter et setter*/
-	public Bateau getBateau(int i) {		// retourn un bateau de la liste de J selon son identfiant
+	public Bateau getBateau(int i) throws ExceptionChoixBateau {		// retourne un bateau de la liste de J selon son identfiant
 		Bateau b = null;
 		for (int j = 0; j < this.bateauList.size(); j++) {
 			if(this.bateauList.get(j).getId()==i) {
 				b=this.bateauList.get(j);
 			}
 		}
-		return b;
+		if(b != null) {
+			return b;
+			}
+		else {
+			throw new ExceptionChoixBateau("Ce bateau n'existe pas.");
+		}
 	}
 	
 	public String getName() {

@@ -26,8 +26,16 @@ public class Game implements Runnable{
 		initBateau(J2);
 		
 		while(J1.getNbBateau() != 0 && J1.getNbBateau() != 0) {
+			//Afficher la grille avec le tir précédent
+			
 			//Tirs des joueurs
-						
+			System.out.println("Au tour de " + J1.getName() + " de tirer !");
+			System.out.println("Coordonnée sur x :");
+			int x = in.nextInt();
+			
+			System.out.println("Coordonnée sur y :");
+			int y = in.nextInt();
+			//Effectuer le tir
 			
 			//Deplacement si tir rate
 			jeuEnCours = false;

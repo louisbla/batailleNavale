@@ -2,6 +2,7 @@ package Model;
 import java.util.ArrayList;
 
 import Controller.Game;
+import Exception.*;
 
 public class Joueur {
 
@@ -81,7 +82,7 @@ public class Joueur {
 	}
 	
 	/*palce un bateau dans la grille de J, et lui affecte les coordonne*/
-	public void placerBateau( Bateau boat,int X, int Y, boolean vertical) {
+	public void placerBateau( Bateau boat,int X, int Y, boolean vertical) throws ExceptionPlacement {
 		if(checkPlacement(boat, X, Y, vertical)) {
 			boat.setX(X);
 			boat.setY(Y);
@@ -96,6 +97,8 @@ public class Joueur {
 					grille[Y][X+i]=boat.getId();
 				}
 			}
+		}else {
+			throw new ExceptionPlacement("Placement ou mouvement interdit. Veuillez réessayer.");
 		}
 	}
 
@@ -115,35 +118,35 @@ public class Joueur {
 	}
 	
 	/*verifie et bouge le bateau vers le haut, bas, gauche ou droite*/
-	public void moveUp(Bateau boat) {
+	public void moveUp(Bateau boat) throws ExceptionPlacement {
 		if(this.checkPlacement(boat, boat.getX(), boat.getY()-1, boat.getVertical() )) {
 			this.enleverBateau(boat);
 			this.placerBateau(boat, boat.getX(), boat.getY()-1, boat.getVertical());
 		}
 	}
 	
-	public void moveDown(Bateau boat) {
+	public void moveDown(Bateau boat) throws ExceptionPlacement {
 		if(this.checkPlacement(boat, boat.getX(), boat.getY()+1, boat.getVertical() )) {
 			this.enleverBateau(boat);
 			this.placerBateau(boat, boat.getX(), boat.getY()+1, boat.getVertical());
 		}
 	}
 	
-	public void moveLeft(Bateau boat) {
+	public void moveLeft(Bateau boat) throws ExceptionPlacement {
 		if(this.checkPlacement(boat, boat.getX()-1, boat.getY(), boat.getVertical() )) {
 			this.enleverBateau(boat);
 			this.placerBateau(boat, boat.getX()-1, boat.getY(), boat.getVertical());
 		}
 	}
 	
-	public void moveRight(Bateau boat) {
+	public void moveRight(Bateau boat) throws ExceptionPlacement {
 		if(this.checkPlacement(boat, boat.getX()+1, boat.getY(), boat.getVertical() )) {
 			this.enleverBateau(boat);
 			this.placerBateau(boat, boat.getX()+1, boat.getY(), boat.getVertical());
 		}
 	}
 	
-	public void Rotation(Bateau boat) {
+	public void Rotation(Bateau boat) throws ExceptionPlacement {
 		if(this.checkPlacement(boat, boat.getX(), boat.getY(), !boat.getVertical() )) {
 			this.enleverBateau(boat);
 			this.placerBateau(boat, boat.getX(), boat.getY(), !boat.getVertical());

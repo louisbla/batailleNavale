@@ -10,6 +10,7 @@ public class Joueur {
 	private ArrayList<Bateau> bateauList;	// Liste des bateaux
 	private int nbBateau;					// nb de bateau encore en vie
 	private int[][] grille;					// grille de placement des bateaux selon leur id
+	private int[] dernierTir = new int[3];	// {x,y,touche} x,y coordonne du dernier, tir touche=1 si touche 0 sinon
 
 	{
 		bateauList = new ArrayList<Bateau>();
@@ -194,11 +195,45 @@ public class Joueur {
 	}
 	
 	/*Tire sur un adversaire en x,y avec un bateau boat*/
-	public void tirer(Joueur j2, int x, int y, Bateau boat) {
-		
+	public void tirer(Joueur j2, int x, int y, Bateau boat) throws ExceptionTir {
+		if(checkTir(boat, x, y)) {
+			dernierTir[0]=x;
+			dernierTir[1]=y;
+			int idTir = j2.getGrille()[x][y];
+			
+			if(idTir!=0) {			// test si tir reussi
+				dernierTir[2]=1;
+				j2.getBateau(idTir).Touche();
+				j2.updateBateau();	// mise a jour de la grille et du nb de bateau
+			}else {
+				dernierTir[2]=0;
+			}
+			
+		}else {
+			throw new ExceptionTir("Tir interdit, reessayez.");
+		}
+	}
+	
+	public void updateBateau() {		// mise a jour de la liste des bateau et le nb de bateau en vie lorsque l'un est detruit
+		for (int i = 0; i < bateauList.size(); i++) {
+			if(bateauList.get(i).getVie()==0) {
+				enleverBateau(bateauList.get(i));
+				nbBateau--;
+			}
+		}
 	}
 	
 	/*getter et setter*/
+	public Bateau getBateau(int i) {		// retourn un bateau de la liste de J selon son identfiant
+		Bateau b = null;
+		for (int j = 0; j < this.bateauList.size(); j++) {
+			if(this.bateauList.get(j).getId()==i) {
+				b=this.bateauList.get(j);
+			}
+		}
+		return b;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -222,5 +257,9 @@ public class Joueur {
 	public int[][] getGrille(){
 		return grille;
 	}
+	public int[] getDernierTir() {
+		return dernierTir;
+	}
+	
 
 }

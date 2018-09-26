@@ -41,6 +41,25 @@ public class Joueur {
 		return placeDispo;
 	}
 	
+	public boolean checkTir(Bateau boat, int X, int Y) {
+		boolean tirPossible = false;
+		
+		int l =b.getTaille();
+		if(X<0 || X>=this.grille.length || Y<0 || Y>=this.grille[0].length) { // verification si point (x,y) dans la grille de J
+			check = false;
+		}
+		if(vertical) {
+			if( (Y+l-1)>=this.grille[0].length) { // verification si le bout du bateau dans la grille de J
+				check = false;
+			}
+		}else {
+			if( (X+l-1)>=this.grille.length) { // verification si le bout du bateau dans la grille de J
+				check = false;
+			}
+		}
+		return check;
+	}
+	
 	// verifie que le bateau de J ne sort pas de la grille au coordone (x,y)
 	public boolean checkPlacementDansGrille(Bateau b ,int X, int Y, boolean vertical) {
 		boolean check = true;

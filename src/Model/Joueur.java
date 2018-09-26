@@ -195,7 +195,7 @@ public class Joueur {
 	}
 	
 	/*Tire sur un adversaire en x,y avec un bateau boat*/
-	public void tirer(Joueur j2, int x, int y, Bateau boat) throws ExceptionTir {
+	public boolean tirer(Joueur j2, int x, int y, Bateau boat) throws ExceptionTir {
 		if(checkTir(boat, x, y)) {
 			dernierTir[0]=x;
 			dernierTir[1]=y;
@@ -205,10 +205,12 @@ public class Joueur {
 				dernierTir[2]=1;
 				j2.getBateau(idTir).Touche();
 				j2.updateBateau();	// mise a jour de la grille et du nb de bateau
+
+				return true;
 			}else {
 				dernierTir[2]=0;
+				return false;
 			}
-			
 		}else {
 			throw new ExceptionTir("Tir interdit, reessayez.");
 		}

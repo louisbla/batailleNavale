@@ -44,9 +44,6 @@ public class Game implements Runnable{
 		int y;
 		boolean isVertical;
 		
-		//Cr�ation des bateaux
-		j.initialisationJoueur();
-		
 		//Placement des bateaux
 		System.out.println("----------------Placement des bateaux de " + j.getName() + "----------------");
 		for (int i = 0; i < j.getNbBateau(); i++) {

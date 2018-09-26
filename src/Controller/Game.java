@@ -25,11 +25,16 @@ public class Game implements Runnable{
 		initBateau(J1);
 		initBateau(J2);
 		
-		while(jeuEnCours) {
+		while(J1.getNbBateau() != 0 && J1.getNbBateau() != 0) {
 			//Tirs des joueurs
-			//Dï¿½placement si tir ï¿½chouï¿½
+						
+			
+			//Deplacement si tir rate
 			jeuEnCours = false;
 		}
+		
+		//Afficher le gagnant
+		
 		//fin de partie, on demande aux joueurs s'ils veulent rejouer
 		demanderNouvellePartie();
 	}
@@ -48,19 +53,19 @@ public class Game implements Runnable{
 		System.out.println("----------------Placement des bateaux de " + j.getName() + "----------------");
 		for (int i = 0; i < j.getNbBateau(); i++) {
 			try {
-			in = new Scanner(System.in);
-			
-			System.out.println("Placer le bateau de type : " + j.getBateauList().get(i).getName() + " | Taille : " + j.getBateauList().get(i).getTaille());
-			System.out.print("Position X : ");
-			x = in.nextInt();
-			System.out.print("Position Y : ");
-			y = in.nextInt();
-			System.out.print("Vertical(true ou false) : ");
-			isVertical = in.nextBoolean();
-			
-			j.placerBateau(j.getBateauList().get(i), x, y, isVertical);
+				in = new Scanner(System.in);
+				
+				System.out.println("Placer le bateau de type : " + j.getBateauList().get(i).getName() + " | Taille : " + j.getBateauList().get(i).getTaille());
+				System.out.print("Position X : ");
+				x = in.nextInt();
+				System.out.print("Position Y : ");
+				y = in.nextInt();
+				System.out.print("Vertical(true ou false) : ");
+				isVertical = in.nextBoolean();
+				
+				j.placerBateau(j.getBateauList().get(i), x, y, isVertical);
 			} catch (InputMismatchException e) {
-				System.out.println("Un des paramètres n'était pas bon, veuillez réessayer.");
+				System.out.println("Le paramètre entré n'était pas bon, veuillez réessayer.");
 				i--;
 			}catch (ExceptionPlacement e) {
 				System.out.println(e.getMessage());

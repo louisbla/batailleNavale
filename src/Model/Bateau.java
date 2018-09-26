@@ -3,6 +3,7 @@ import Controller.Game;
 
 public class Bateau {
 
+	protected String name;
 	protected int taille;
 	protected int porte;
 	protected int vie;
@@ -31,16 +32,20 @@ public class Bateau {
         isVertical = false;
     }
     
-    public Bateau(int t, int p, int i, int v){
+    public Bateau(int t, int p, int i, int v, String n){
         taille=t;
         porte=p;
         vie=VIE;
         id = i;
         x=-1; y=-1;
         isVertical = false;
+        name = n;
     }
-	
 
+    public String getName() {
+		return name;
+	}
+    
 	public int getTaille() {
 		return taille;
 	}

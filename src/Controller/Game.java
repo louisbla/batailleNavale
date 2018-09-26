@@ -5,7 +5,7 @@ import Model.*;
 public class Game implements Runnable{
 
 	public final static int TAILLE = 10;
-	
+	//lllll
 	public void run() {
 		
 		Joueur J1 = new Joueur();

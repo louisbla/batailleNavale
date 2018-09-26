@@ -30,7 +30,7 @@ public class Game implements Runnable{
 		while(J1.getNbBateau() != 0 && J1.getNbBateau() != 0) {
 			tourJoueur(J1, J2);
 			//test de partie fini
-			
+
 			tourJoueur(J2, J1);
 			//test de partie fini
 		}
@@ -92,9 +92,7 @@ public class Game implements Runnable{
 	public void phaseDeplacement(Joueur j1){
 		try {
 			Affichage.afficheGrille(j1.getGrille());
-			in = new Scanner(System.in);
-			System.out.print("Choix du Bateau a deplacer (1, 2, 3, 4, 5) : ");
-			int choix = in.nextInt();
+			int choix = choixBateau(j1);
 			for (int i = 0; i < NB_DEPLACEMENT; i++) {
 				deplacement(j1,j1.getBateau(choix));
 				Affichage.afficheGrille(j1.getGrille());
@@ -145,18 +143,29 @@ public class Game implements Runnable{
 		}
 	}
 
+	/*Permet presenter les bateau dispo et recoit la reponse du joueur*/
+	public int choixBateau(Joueur j) {
+		in = new Scanner(System.in);
+		String dispo ="";
+		for (int i = 0; i < j.getBateauList().size(); i++) {
+			dispo+=j.getBateauList().get(i).getId()+", ";
+		}
+		System.out.print("Choix du Bateau a deplacer ("+dispo+") : ");
+		int choix = in.nextInt();
+		return choix;
+	}
+	
 	public void phaseDeTir(Joueur j1, Joueur j2) {
 		try {
 			System.out.println("Au tour de " + j1.getName() + " de tirer !");
-			System.out.print("Choix Bateau(1, 2, 3, 4, 5) : ");
-			int choix = in.nextInt();
-	
+			int choix = choixBateau(j1);
+
 			System.out.print("Coordonnée sur x :");
 			int x = in.nextInt();
-	
+
 			System.out.print("Coordonnée sur y :");
 			int y = in.nextInt();
-	
+
 			j1.tirer(j2, x, y, j1.getBateau(choix));	// tirer avec le bateau d'id 'choix'
 		} catch (ExceptionTir | ExceptionChoixBateau e) {
 			System.out.println(e.getMessage());

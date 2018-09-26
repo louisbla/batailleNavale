@@ -223,6 +223,7 @@ public class Joueur {
 			if(bateauList.get(i).getVie()==0) {
 				enleverBateau(bateauList.get(i));
 				nbBateau--;
+				bateauList.remove(i);		// suppression du bateau detruit
 				System.out.println(bateauList.get(i).getName()+" detruit !");
 			}
 		}

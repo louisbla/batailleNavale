@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Exception.ExceptionPlacement;
+import Exception.ExceptionTir;
 import Model.*;
 
 public class Game implements Runnable{
@@ -26,19 +27,8 @@ public class Game implements Runnable{
 		initBateau(J2);
 		
 		while(J1.getNbBateau() != 0 && J1.getNbBateau() != 0) {
-			//Afficher la grille avec le tir précédent
-			
-			//Tirs des joueurs
-			System.out.println("Au tour de " + J1.getName() + " de tirer !");
-			System.out.println("Coordonnée sur x :");
-			int x = in.nextInt();
-			
-			System.out.println("Coordonnée sur y :");
-			int y = in.nextInt();
-			//Effectuer le tir
-			
-			//Deplacement si tir rate
-			jeuEnCours = false;
+			tourJoueur(J1, J2);
+			tourJoueur(J2, J1);
 		}
 		
 		//Afficher le gagnant
@@ -79,6 +69,37 @@ public class Game implements Runnable{
 				System.out.println(e.getMessage());
 				i--;
 			}
+		}
+	}
+	
+	public void tourJoueur(Joueur j1, Joueur j2) {
+		//Afficher la grille avec le tir précédent
+		
+		//Tirs des joueurs
+		tirer(j1, j2);
+		
+		//Effectuer le tir
+		
+		//Deplacement si tir rate
+		
+	}
+	
+	public void tirer(Joueur j1, Joueur j2) {
+		System.out.println("Au tour de " + j1.getName() + " de tirer !");
+		System.out.print("Choix Bateau(1, 2, 3, 4, 5) : ");
+		int choix = in.nextInt();
+		
+		System.out.print("Coordonnée sur x :");
+		int x = in.nextInt();
+		
+		System.out.print("Coordonnée sur y :");
+		int y = in.nextInt();
+		
+		try {
+			j1.tirer(j2, x, y, j1.getBateauList().get(choix - 1));
+		} catch (ExceptionTir e) {
+			System.out.println(e.getMessage());
+			tirer(j1, j2);
 		}
 	}
 	

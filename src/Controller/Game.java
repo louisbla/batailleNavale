@@ -1,5 +1,9 @@
 package Controller;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import Exception.ExceptionPlacement;
 import Model.*;
 
 public class Game implements Runnable{
@@ -46,14 +50,25 @@ public class Game implements Runnable{
 		//Placement des bateaux
 		System.out.println("----------------Placement des bateaux de " + j.getName() + "----------------");
 		for (int i = 0; i < j.getNbBateau(); i++) {
-			System.out.println("Type : " + j.getBateauList().get(i).getName() + " | Taille : " + j.getBateauList().get(i).getTaille());
+			try {
+			in = new Scanner(System.in);
+			
+			System.out.println("Placer le bateau de type : " + j.getBateauList().get(i).getName() + " | Taille : " + j.getBateauList().get(i).getTaille());
 			System.out.print("Position X : ");
 			x = in.nextInt();
 			System.out.print("Position Y : ");
 			y = in.nextInt();
 			System.out.print("Vertical(true ou false) : ");
 			isVertical = in.nextBoolean();
+			
 			j.placerBateau(j.getBateauList().get(i), x, y, isVertical);
+			} catch (InputMismatchException e) {
+				System.out.println("Un des paramètres n'était pas bon, veuillez réessayer.");
+				i--;
+			}catch (ExceptionPlacement e) {
+				System.out.println(e.getMessage());
+				i--;
+			}
 		}
 	}
 	

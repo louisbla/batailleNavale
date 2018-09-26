@@ -205,10 +205,12 @@ public class Joueur {
 				dernierTir[2]=1;
 				j2.getBateau(idTir).Touche();
 				j2.updateBateau();	// mise a jour de la grille et du nb de bateau
+				System.out.println("Touche !");
 
 				return true;
 			}else {
 				dernierTir[2]=0;
+				System.out.println("Rate");
 				return false;
 			}
 		}else {
@@ -221,6 +223,7 @@ public class Joueur {
 			if(bateauList.get(i).getVie()==0) {
 				enleverBateau(bateauList.get(i));
 				nbBateau--;
+				System.out.println(bateauList.get(i).getName()+" detruit !");
 			}
 		}
 	}

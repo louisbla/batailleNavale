@@ -41,13 +41,10 @@ public class Bateau {
         isVertical = false;
         name = n;
     }
-<<<<<<< master
-=======
 	
     public void Touche() {
     	vie--;
     }
->>>>>>> ajout methode tirer()
 
     public String getName() {
 		return name;

@@ -5,9 +5,10 @@ public class Croiseur extends Bateau{
 
 	private final static int vieC = Bateau.VIE;	// nb de vie 
 	private final static int tailleCroiseur = 4;	// taille 
-	private final static int porteeCroiseur = 2;	// portee 
+	private final static int porteeCroiseur = 2;	// portee
+	private final static String nameCroiseur = "Croiseur";
 
 	public Croiseur(int i) {
-		super(tailleCroiseur,porteeCroiseur,i,vieC);
+		super(tailleCroiseur,porteeCroiseur,i,vieC,nameCroiseur);
 	}
 }

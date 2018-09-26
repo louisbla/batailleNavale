@@ -41,23 +41,31 @@ public class Joueur {
 		return placeDispo;
 	}
 	
-	public boolean checkTir(Bateau boat, int X, int Y) {
-		boolean tirPossible = false;
-		
-		int l =b.getTaille();
-		if(X<0 || X>=this.grille.length || Y<0 || Y>=this.grille[0].length) { // verification si point (x,y) dans la grille de J
-			check = false;
+	public void checkTir(Bateau boat, int X, int Y) {
+		if(X<0 || X>=this.grille.length || Y<0 || Y>=this.grille[0].length) { // verification si point (x,y) dans la grille
+			throw new ExceptionTir("Vous ne pouvez pas tirer ici, cette case est en dehors de la grille !");
 		}
-		if(vertical) {
-			if( (Y+l-1)>=this.grille[0].length) { // verification si le bout du bateau dans la grille de J
-				check = false;
+		if(boat.isVertical) {
+			if(Y < boat.y - boat.porte || Y > boat.y + boat.taille + boat.porte - 1) {
+				throw new ExceptionTir("Vous ne pouvez pas tirer ici, cette case est hors de porté du bateau !");
+			}else if(Y < boat.y && X != boat.x) {
+				throw new ExceptionTir("Vous ne pouvez pas tirer ici, cette case est hors de porté du bateau !");
+			}else if(Y >= boat.y + boat.taille && X != boat.x) {
+				throw new ExceptionTir("Vous ne pouvez pas tirer ici, cette case est hors de porté du bateau !");
+			}else if(X < boat.x - boat.porte || X > boat.x + boat.porte) {
+				throw new ExceptionTir("Vous ne pouvez pas tirer ici, cette case est hors de porté du bateau !");
 			}
 		}else {
-			if( (X+l-1)>=this.grille.length) { // verification si le bout du bateau dans la grille de J
-				check = false;
+			if(X < boat.x - boat.porte || X > boat.x + boat.taille + boat.porte - 1) {
+				throw new ExceptionTir("Vous ne pouvez pas tirer ici, cette case est hors de porté du bateau !");
+			}else if(X < boat.x && Y != boat.y) {
+				throw new ExceptionTir("Vous ne pouvez pas tirer ici, cette case est hors de porté du bateau !");
+			}else if(X >= boat.x + boat.taille && Y != boat.y) {
+				throw new ExceptionTir("Vous ne pouvez pas tirer ici, cette case est hors de porté du bateau !");
+			}else if(Y < boat.y - boat.porte || Y > boat.y + boat.porte) {
+				throw new ExceptionTir("Vous ne pouvez pas tirer ici, cette case est hors de porté du bateau !");
 			}
 		}
-		return check;
 	}
 	
 	// verifie que le bateau de J ne sort pas de la grille au coordone (x,y)

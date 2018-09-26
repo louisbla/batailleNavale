@@ -11,16 +11,7 @@ public class main {
 		
 		Game partie = new Game();
 		partie.run();
-/*
-		Joueur J1 = new Joueur();
-		J1.placerBateau(J1.getBateauList().get(0), 5, 5, true);
-		J1.placerBateau(J1.getBateauList().get(1), 6,0, false);
-		afficheGrille(J1.getGrille());
-		J1.moveDown(J1.getBateauList().get(1));
-		System.out.println();
-		afficheGrille(J1.getGrille());*/
-		
-		/*methode jeu*/
+
 	
 	}
 	

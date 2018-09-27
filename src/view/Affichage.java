@@ -11,5 +11,6 @@ public class Affichage {
 			}
 			System.out.print("|\n");
 		}
+		System.out.println();
 	}
 }

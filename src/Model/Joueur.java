@@ -23,10 +23,10 @@ public class Joueur {
 
 	/*ajout des bateaux*/
 	public void initialisationJoueur() {
-		bateauList.add(new PorteAvion(1));	// porte avion avec id en parametre
+		/*bateauList.add(new PorteAvion(1));	// porte avion avec id en parametre
 		bateauList.add(new Croiseur(2));	// croiseur
 		bateauList.add(new ContreTorpilleur(3));	// contre torpilleur
-		bateauList.add(new SousMarin(4));	// sous-marin
+		bateauList.add(new SousMarin(4));	// sous-marin*/
 		bateauList.add(new Torpilleur(5));	// torpilleur
 		setNbBateau(bateauList.size());		// tout les bateau sont en vie
 	}
@@ -199,7 +199,7 @@ public class Joueur {
 		if(checkTir(boat, x, y)) {
 			dernierTir[0]=x;
 			dernierTir[1]=y;
-			int idTir = j2.getGrille()[x][y];
+			int idTir = j2.getGrille()[y][x];
 			
 			if(idTir!=0) {			// test si tir reussi
 				dernierTir[2]=1;

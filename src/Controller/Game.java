@@ -12,12 +12,12 @@ public class Game implements Runnable{
 	public final static int TAILLE = 10;
 	public static final int NB_DEPLACEMENT = 2;
 
-	private boolean jeuEnCours = true;
 	private Scanner in = new Scanner(System.in);
 
 	public void run() {
 		Joueur J1 = new Joueur("Joueur 1");
 		Joueur J2 = new Joueur("Joueur 2");
+		
 
 		//Initialisation des Noms des Joueurs
 		initName(J1);
@@ -31,12 +31,18 @@ public class Game implements Runnable{
 			tourJoueur(J1, J2);
 			//test de partie fini
 
+			if(J1.getNbBateau() != 0 && J1.getNbBateau() != 0) { // test de partie en cours
 			tourJoueur(J2, J1);
-			//test de partie fini
+			}
 		}
 
 		//Afficher le gagnant
-
+		if(J1.getNbBateau()>0) {
+			System.out.println(J2.getName()+" gagne la partie !!");
+		}else {
+			System.out.println(J1.getName()+" gagne la partie !!");
+		}
+		
 		//fin de partie, on demande aux joueurs s'ils veulent rejouer
 		demanderNouvellePartie();
 	}
@@ -150,7 +156,7 @@ public class Game implements Runnable{
 		for (int i = 0; i < j.getBateauList().size(); i++) {
 			dispo+=j.getBateauList().get(i).getId()+", ";
 		}
-		System.out.print("Choix du Bateau a deplacer ("+dispo+") : ");
+		System.out.print("Choix du Bateau a utiliser ("+dispo+") : ");
 		int choix = in.nextInt();
 		return choix;
 	}
@@ -179,9 +185,8 @@ public class Game implements Runnable{
 			System.out.println("Rejouer ?  (Taper 'oui' ou 'non')");
 			rejouer = in.nextLine();
 		}
-		if(rejouer.equals("non")) {
-			jeuEnCours = false;
+		if(rejouer.equals("oui")) {
+			this.run();		// on recommence la partie
 		}
 	}
-
 }

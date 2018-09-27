@@ -9,15 +9,16 @@ import view.*;
 
 public class Game implements Runnable{
 
-	public final static int TAILLE = 10;
+	public static final int TAILLE = 10;
 	public static final int NB_DEPLACEMENT = 2;
-
+	private final int DELAI = 1000;
+	
 	private Scanner in = new Scanner(System.in);
 
 	public void run() {
 		Joueur J1 = new Joueur("Joueur 1");
 		Joueur J2 = new Joueur("Joueur 2");
-		
+
 
 		//Initialisation des Noms des Joueurs
 		initName(J1);
@@ -27,12 +28,14 @@ public class Game implements Runnable{
 		initBateau(J1);
 		initBateau(J2);
 
-		while(J1.getNbBateau() != 0 && J1.getNbBateau() != 0) {
-			tourJoueur(J1, J2);
-			//test de partie fini
+		while(J1.getNbBateau() != 0 && J2.getNbBateau() != 0) {
 
-			if(J1.getNbBateau() != 0 && J1.getNbBateau() != 0) { // test de partie en cours
-			tourJoueur(J2, J1);
+			tourJoueur(J1, J2);
+			try {Thread.sleep(DELAI);} catch (InterruptedException e) {e.printStackTrace();}	// delai entre chaque tour 
+
+			if(J1.getNbBateau() != 0 && J2.getNbBateau() != 0) { // test de partie en cours
+				tourJoueur(J2, J1);
+				try {Thread.sleep(DELAI);} catch (InterruptedException e) {e.printStackTrace();}
 			}
 		}
 
@@ -42,7 +45,7 @@ public class Game implements Runnable{
 		}else {
 			System.out.println(J1.getName()+" gagne la partie !!");
 		}
-		
+
 		//fin de partie, on demande aux joueurs s'ils veulent rejouer
 		demanderNouvellePartie();
 	}
@@ -84,8 +87,12 @@ public class Game implements Runnable{
 	}
 
 	public void tourJoueur(Joueur j1, Joueur j2) {
-		//Afficher la grille avec le tir précédent
+		System.out.println("==============================================");
+		System.out.println("Au tour de " + j1.getName() + " de tirer !");
+
+		//Afficher la grille avec le tir précédent et les bateaux en vie
 		Affichage.afficheGrille(j1.getGrille());
+		Affichage.afficheBateauEnVie(j1);
 		//Tirs du joueur
 		phaseDeTir(j1, j2);
 
@@ -160,10 +167,9 @@ public class Game implements Runnable{
 		int choix = in.nextInt();
 		return choix;
 	}
-	
+
 	public void phaseDeTir(Joueur j1, Joueur j2) {
 		try {
-			System.out.println("Au tour de " + j1.getName() + " de tirer !");
 			int choix = choixBateau(j1);
 
 			System.out.print("Coordonnée sur x :");
@@ -177,6 +183,7 @@ public class Game implements Runnable{
 			System.out.println(e.getMessage());
 			phaseDeTir(j1, j2);
 		}
+		j2.updateBateau();	// mise a jour de la grille et du nb de bateau
 	}
 
 	private void demanderNouvellePartie() {

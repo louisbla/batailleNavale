@@ -23,10 +23,10 @@ public class Joueur {
 
 	/*ajout des bateaux*/
 	public void initialisationJoueur() {
-		/*bateauList.add(new PorteAvion(1));	// porte avion avec id en parametre
+		bateauList.add(new PorteAvion(1));	// porte avion avec id en parametre
 		bateauList.add(new Croiseur(2));	// croiseur
 		bateauList.add(new ContreTorpilleur(3));	// contre torpilleur
-		bateauList.add(new SousMarin(4));	// sous-marin*/
+		bateauList.add(new SousMarin(4));	// sous-marin
 		bateauList.add(new Torpilleur(5));	// torpilleur
 		setNbBateau(bateauList.size());		// tout les bateau sont en vie
 	}
@@ -194,7 +194,7 @@ public class Joueur {
 		}
 	}
 	
-	/*Tire sur un adversaire en x,y avec un bateau boat*/
+	/*Tire sur un adversaire j2 en x,y avec un bateau boat*/
 	public boolean tirer(Joueur j2, int x, int y, Bateau boat) throws ExceptionTir, ExceptionChoixBateau {
 		if(checkTir(boat, x, y)) {
 			dernierTir[0]=x;
@@ -204,9 +204,7 @@ public class Joueur {
 			if(idTir!=0) {			// test si tir reussi
 				dernierTir[2]=1;
 				j2.getBateau(idTir).Touche();
-				j2.updateBateau();	// mise a jour de la grille et du nb de bateau
-				System.out.println("Touche !");
-
+				System.out.println("Touche !");				
 				return true;
 			}else {
 				dernierTir[2]=0;
@@ -223,8 +221,9 @@ public class Joueur {
 			if(bateauList.get(i).getVie()==0) {
 				enleverBateau(bateauList.get(i));
 				nbBateau--;
-				bateauList.remove(i);		// suppression du bateau detruit
 				System.out.println(bateauList.get(i).getName()+" detruit !");
+				bateauList.remove(i);		// suppression du bateau detruit
+				
 			}
 		}
 	}

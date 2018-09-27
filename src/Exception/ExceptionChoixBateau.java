@@ -1,7 +1,7 @@
 package Exception;
 
-public class ExceptionChoixBateau extends Exception{
-
+public class ExceptionChoixBateau extends Exception {
+	
 	public ExceptionChoixBateau() {
 		super();
 	}
@@ -9,5 +9,4 @@ public class ExceptionChoixBateau extends Exception{
 	public ExceptionChoixBateau(String message) {
 		super(message);
 	}
-
 }

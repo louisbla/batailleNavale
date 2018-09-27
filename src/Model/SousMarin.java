@@ -1,7 +1,7 @@
 package Model;
 import Controller.*;
 
-public class SousMarin extends Bateau{
+public class SousMarin extends Bateau {
 
 	private final static int vieSM = Bateau.VIE;	// nb de vie 
 	private final static int tailleSM = 3;	// taille 

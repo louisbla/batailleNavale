@@ -7,7 +7,7 @@ import Exception.*;
 import Model.*;
 import view.*;
 
-public class Game implements Runnable{
+public class Game implements Runnable {
 
 	public static final int TAILLE = 10;
 	public static final int NB_DEPLACEMENT = 2;
@@ -28,7 +28,7 @@ public class Game implements Runnable{
 		initBateau(J1);
 		initBateau(J2);
 
-		while(J1.getNbBateau() != 0 && J2.getNbBateau() != 0) {
+		while (J1.getNbBateau() != 0 && J2.getNbBateau() != 0) {
 
 			tourJoueur(J1, J2);
 			try {Thread.sleep(DELAI);} catch (InterruptedException e) {e.printStackTrace();}	// delai entre chaque tour 
@@ -40,10 +40,10 @@ public class Game implements Runnable{
 		}
 
 		//Afficher le gagnant
-		if(J1.getNbBateau()>0) {
-			System.out.println(J2.getName()+" gagne la partie !!");
+		if (J1.getNbBateau() > 0) {
+			System.out.println(J2.getName() + " gagne la partie !!");
 		}else {
-			System.out.println(J1.getName()+" gagne la partie !!");
+			System.out.println(J1.getName() + " gagne la partie !!");
 		}
 
 		//fin de partie, on demande aux joueurs s'ils veulent rejouer
@@ -97,7 +97,7 @@ public class Game implements Runnable{
 		phaseDeTir(j1, j2);
 
 		//Deplacement si tir rate
-		if(j1.getDernierTir()[2]==0) {
+		if (j1.getDernierTir()[2] == 0) {
 			phaseDeplacement(j1);
 		}
 	}
@@ -110,10 +110,10 @@ public class Game implements Runnable{
 				deplacement(j1,j1.getBateau(choix));
 				Affichage.afficheGrille(j1.getGrille());
 			}
-		}catch(InputMismatchException e) {
+		}catch (InputMismatchException e) {
 			System.out.println("Le paramètre entré n'était pas bon, veuillez réessayer.");
 			phaseDeplacement(j1);
-		}catch(ExceptionChoixBateau e) {
+		}catch (ExceptionChoixBateau e) {
 			System.out.println(e.getMessage());
 			phaseDeplacement(j1);
 		}
@@ -132,7 +132,6 @@ public class Game implements Runnable{
 			case "haut":
 				j.moveUp(boat);
 				break;
-
 			case "bas":
 				j.moveDown(boat);
 				break;
@@ -149,8 +148,7 @@ public class Game implements Runnable{
 				deplacement(j,boat);
 				break;
 			}
-
-		}catch (ExceptionMouvement | ExceptionPlacement e) {
+		} catch (ExceptionMouvement | ExceptionPlacement e) {
 			System.out.println(e.getMessage());
 			deplacement(j,boat);
 		}
@@ -159,11 +157,11 @@ public class Game implements Runnable{
 	/*Permet presenter les bateau dispo et recoit la reponse du joueur*/
 	public int choixBateau(Joueur j) {
 		in = new Scanner(System.in);
-		String dispo ="";
+		String dispo = "";
 		for (int i = 0; i < j.getBateauList().size(); i++) {
-			dispo+=j.getBateauList().get(i).getId()+", ";
+			dispo += j.getBateauList().get(i).getId() + ", ";
 		}
-		System.out.print("Choix du Bateau a utiliser ("+dispo+") : ");
+		System.out.print("Choix du Bateau à utiliser (" + dispo + ") : ");
 		int choix = in.nextInt();
 		return choix;
 	}
@@ -188,11 +186,11 @@ public class Game implements Runnable{
 
 	private void demanderNouvellePartie() {
 		String rejouer = "";
-		while(!rejouer.equals("oui") && !rejouer.equals("non")) {
+		while (!rejouer.equals("oui") && !rejouer.equals("non")) {
 			System.out.println("Rejouer ?  (Taper 'oui' ou 'non')");
 			rejouer = in.nextLine();
 		}
-		if(rejouer.equals("oui")) {
+		if (rejouer.equals("oui")) {
 			this.run();		// on recommence la partie
 		}
 	}

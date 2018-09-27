@@ -1,7 +1,7 @@
 package Exception;
 
-public class ExceptionTir extends Exception{
-
+public class ExceptionTir extends Exception {
+	
 	public ExceptionTir() {
 		super();
 	}
@@ -9,5 +9,4 @@ public class ExceptionTir extends Exception{
 	public ExceptionTir(String message) {
 		super(message);
 	}
-
 }

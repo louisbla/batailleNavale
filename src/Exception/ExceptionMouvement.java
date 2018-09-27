@@ -1,7 +1,7 @@
 package Exception;
 
-public class ExceptionMouvement extends Exception{
-
+public class ExceptionMouvement extends Exception {
+	
 	public ExceptionMouvement() {
 		super();
 	}
@@ -9,5 +9,4 @@ public class ExceptionMouvement extends Exception{
 	public ExceptionMouvement(String message) {
 		super(message);
 	}
-
 }

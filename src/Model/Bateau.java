@@ -15,29 +15,29 @@ public class Bateau {
 	public static final int VIE = 3; // vie identique à chaque bateau de base
 	
 	public Bateau(int i){
-        taille=0;
-        porte=0;
-        vie=VIE;
-        id=i;
-        x=-1; y=-1;	// initialement pas sur la grille
-        isVertical=false;					// initialement a l horizontal
+        taille = 0;
+        porte = 0;
+        vie = VIE;
+        id = i;
+        x = -1; y = -1;	// initialement pas sur la grille
+        isVertical = false; // initialement a l horizontal
     }
     
     public Bateau(int t, int p, int i){
-        taille=t;
-        porte=p;
-        vie=VIE;
+        taille = t;
+        porte = p;
+        vie = VIE;
         id = i;
-        x=-1; y=-1;
+        x = -1; y = -1;
         isVertical = false;
     }
     
     public Bateau(int t, int p, int i, int v, String n){
-        taille=t;
-        porte=p;
-        vie=VIE;
+        taille = t;
+        porte = p;
+        vie = VIE;
         id = i;
-        x=-1; y=-1;
+        x = -1; y = -1;
         isVertical = false;
         name = n;
     }
@@ -110,5 +110,4 @@ public class Bateau {
 	public boolean getVertical() {
 		return this.isVertical;
 	}
-
 }

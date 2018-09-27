@@ -1,7 +1,7 @@
 package Exception;
 
-public class ExceptionPlacement extends Exception{
-
+public class ExceptionPlacement extends Exception {
+	
 	public ExceptionPlacement() {
 		super();
 	}
@@ -9,5 +9,4 @@ public class ExceptionPlacement extends Exception{
 	public ExceptionPlacement(String message) {
 		super(message);
 	}
-
 }

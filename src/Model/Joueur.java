@@ -18,8 +18,8 @@ public class Joueur {
 		grille = new int[Game.TAILLE][Game.TAILLE];
 	}
 	
-	public Joueur() {name="";}
-	public Joueur(String n) {name=n;}
+	public Joueur() {name = "";}
+	public Joueur(String n) {name = n;}
 
 	/*ajout des bateaux*/
 	public void initialisationJoueur() {
@@ -34,7 +34,7 @@ public class Joueur {
 	/* verifier si on peut placer un bateau du joueur J au point (x,y) selon ses autres bateaux
 	 - (x,y) = point le plus en haut à gauche de bateau
 	 - isVertical = est il a la verticale ou non */
-	public boolean checkPlacement( Bateau boat ,int X, int Y, boolean vertical) {
+	public boolean checkPlacement(Bateau boat ,int X, int Y, boolean vertical) {
 		boolean placeDispo = false;
 		// test du bateau dans la grille en premier pour eviter le out of range au second test
 		if(this.checkPlacementDansGrille(boat, X, Y, vertical)) {
@@ -46,27 +46,27 @@ public class Joueur {
 	public boolean checkTir(Bateau boat, int X, int Y) {
 		boolean tirPossible = true;
 		
-		if(X<0 || X>=this.grille.length || Y<0 || Y>=this.grille[0].length) { // verification si point (x,y) dans la grille
+		if (X < 0 || X >= this.grille.length || Y < 0 || Y >= this.grille[0].length) { // verification si point (x,y) dans la grille
 			tirPossible = false;
 		}
-		if(boat.isVertical) {
-			if(Y < boat.y - boat.porte || Y > boat.y + boat.taille + boat.porte - 1) {
+		if (boat.isVertical) {
+			if (Y < boat.y - boat.porte || Y > boat.y + boat.taille + boat.porte - 1) {
 				tirPossible = false;
-			}else if(Y < boat.y && X != boat.x) {
+			} else if (Y < boat.y && X != boat.x) {
 				tirPossible = false;
-			}else if(Y >= boat.y + boat.taille && X != boat.x) {
+			} else if (Y >= boat.y + boat.taille && X != boat.x) {
 				tirPossible = false;
-			}else if(X < boat.x - boat.porte || X > boat.x + boat.porte) {
+			} else if (X < boat.x - boat.porte || X > boat.x + boat.porte) {
 				tirPossible = false;
 			}
-		}else {
+		} else {
 			if(X < boat.x - boat.porte || X > boat.x + boat.taille + boat.porte - 1) {
 				tirPossible = false;
-			}else if(X < boat.x && Y != boat.y) {
+			} else if (X < boat.x && Y != boat.y) {
 				tirPossible = false;
-			}else if(X >= boat.x + boat.taille && Y != boat.y) {
+			} else if (X >= boat.x + boat.taille && Y != boat.y) {
 				tirPossible = false;
-			}else if(Y < boat.y - boat.porte || Y > boat.y + boat.porte) {
+			} else if (Y < boat.y - boat.porte || Y > boat.y + boat.porte) {
 				tirPossible = false;
 			}
 		}
@@ -76,16 +76,16 @@ public class Joueur {
 	// verifie que le bateau de J ne sort pas de la grille au coordone (x,y)
 	public boolean checkPlacementDansGrille(Bateau b ,int X, int Y, boolean vertical) {
 		boolean check = true;
-		int l =b.getTaille();
-		if(X<0 || X>=this.grille.length || Y<0 || Y>=this.grille[0].length) { // verification si point (x,y) dans la grille de J
+		int l = b.getTaille();
+		if (X < 0 || X >= this.grille.length || Y < 0 || Y >= this.grille[0].length) { // verification si point (x,y) dans la grille de J
 			check = false;
 		}
-		if(vertical) {
-			if( (Y+l-1)>=this.grille[0].length) { // verification si le bout du bateau dans la grille de J
+		if (vertical) {
+			if ((Y+l-1) >= this.grille[0].length) { // verification si le bout du bateau dans la grille de J
 				check = false;
 			}
-		}else {
-			if( (X+l-1)>=this.grille.length) { // verification si le bout du bateau dans la grille de J
+		} else {
+			if ((X+l-1) >= this.grille.length) { // verification si le bout du bateau dans la grille de J
 				check = false;
 			}
 		}
@@ -95,17 +95,17 @@ public class Joueur {
 	// verifie que le bateau de J ne chevauche pas sur d autre de ses bateaux
 	public boolean checkPlacementAvecBateaux(Bateau b ,int X, int Y, boolean vertical) {
 		boolean check = true;
-		int l =b.getTaille();
-		if(vertical) {	// test vertical
+		int l = b.getTaille();
+		if (vertical) {	// test vertical
 			for (int i = 0; i < l; i++) {
-				if(this.grille[Y+i][X]!=0 && this.grille[Y+i][X]!=b.getId() ) {// test si la case est occupe par un bateau different
-					check=false;
+				if (this.grille[Y+i][X] != 0 && this.grille[Y+i][X] != b.getId()) {// test si la case est occupe par un bateau different
+					check = false;
 				}
 			}
-		}else {			// test horizontal
+		} else {			// test horizontal
 			for (int i = 0; i < l; i++) {
-				if(this.grille[Y][X+i]!=0 && this.grille[Y][X+i]!=b.getId() ) {// test si la case est occupe par un bateau different
-					check=false;
+				if (this.grille[Y][X+i] != 0 && this.grille[Y][X+i] != b.getId()) {// test si la case est occupe par un bateau different
+					check = false;
 				}
 			}
 		}
@@ -113,117 +113,116 @@ public class Joueur {
 	}
 	
 	/*palce un bateau dans la grille de J, et lui affecte les coordonne*/
-	public void placerBateau( Bateau boat,int X, int Y, boolean vertical) throws ExceptionPlacement {
-		if(checkPlacement(boat, X, Y, vertical)) {
+	public void placerBateau(Bateau boat,int X, int Y, boolean vertical) throws ExceptionPlacement {
+		if (checkPlacement(boat, X, Y, vertical)) {
 			boat.setX(X);
 			boat.setY(Y);
 			boat.setVertical(vertical);
 			
-			if(vertical) {
-				for (int i = 0; i <boat.getTaille(); i++) {
-					grille[Y+i][X]=boat.getId();
+			if (vertical) {
+				for (int i = 0; i < boat.getTaille(); i++) {
+					grille[Y+i][X] = boat.getId();
 				}
-			}else {
-				for (int i = 0; i <boat.getTaille(); i++) {
-					grille[Y][X+i]=boat.getId();
+			} else {
+				for (int i = 0; i < boat.getTaille(); i++) {
+					grille[Y][X+i] = boat.getId();
 				}
 			}
-		}else {
+		} else {
 			throw new ExceptionPlacement("Placement du bateau interdit. Veuillez réessayer.");
 		}
 	}
 
 	/*Enleve le bateau de la grille, sans affecter ses coordonnes*/
-	public void enleverBateau( Bateau boat) {
+	public void enleverBateau(Bateau boat) {
 		int x = boat.getX();
 		int y = boat.getY();
-		if(boat.getVertical()) {
+		if (boat.getVertical()) {
 			for (int i = 0; i < boat.getTaille(); i++) {
-				this.grille[y+i][x]=0;
+				this.grille[y+i][x] = 0;
 			}
-		}else {
+		} else {
 			for (int i = 0; i < boat.getTaille(); i++) {
-				this.grille[y][x+i]=0;
+				this.grille[y][x+i] = 0;
 			}
 		}
 	}
 	
 	/*verifie et bouge le bateau vers le haut, bas, gauche ou droite*/
 	public void moveUp(Bateau boat) throws ExceptionPlacement, ExceptionMouvement {
-		if(this.checkPlacement(boat, boat.getX(), boat.getY()-1, boat.getVertical() )) {
+		if (this.checkPlacement(boat, boat.getX(), boat.getY()-1, boat.getVertical())) {
 			this.enleverBateau(boat);
 			this.placerBateau(boat, boat.getX(), boat.getY()-1, boat.getVertical());
-		}else {
+		} else {
 			throw new ExceptionMouvement("Deplacement vers le haut impossible, réessayez");
 		}
 	}
 	
 	public void moveDown(Bateau boat) throws ExceptionPlacement, ExceptionMouvement {
-		if(this.checkPlacement(boat, boat.getX(), boat.getY()+1, boat.getVertical() )) {
+		if (this.checkPlacement(boat, boat.getX(), boat.getY()+1, boat.getVertical())) {
 			this.enleverBateau(boat);
 			this.placerBateau(boat, boat.getX(), boat.getY()+1, boat.getVertical());
-		}else{
+		} else {
 			throw new ExceptionMouvement("Deplacement vers le bas impossible, réessayez");
 		}
 	}
 	
 	public void moveLeft(Bateau boat) throws ExceptionPlacement, ExceptionMouvement {
-		if(this.checkPlacement(boat, boat.getX()-1, boat.getY(), boat.getVertical() )) {
+		if (this.checkPlacement(boat, boat.getX()-1, boat.getY(), boat.getVertical())) {
 			this.enleverBateau(boat);
 			this.placerBateau(boat, boat.getX()-1, boat.getY(), boat.getVertical());
-		}else{
+		} else {
 			throw new ExceptionMouvement("Deplacement vers la gauche impossible, réessayez");
 		}
 	}
 	
 	public void moveRight(Bateau boat) throws ExceptionPlacement, ExceptionMouvement {
-		if(this.checkPlacement(boat, boat.getX()+1, boat.getY(), boat.getVertical() )) {
+		if (this.checkPlacement(boat, boat.getX()+1, boat.getY(), boat.getVertical())) {
 			this.enleverBateau(boat);
 			this.placerBateau(boat, boat.getX()+1, boat.getY(), boat.getVertical());
-		}else{
+		} else {
 			throw new ExceptionMouvement("Deplacement vers la droite impossible, réessayez");
 		}
 	}
 	
 	public void Rotation(Bateau boat) throws ExceptionPlacement, ExceptionMouvement {
-		if(this.checkPlacement(boat, boat.getX(), boat.getY(), !boat.getVertical() )) {
+		if (this.checkPlacement(boat, boat.getX(), boat.getY(), !boat.getVertical())) {
 			this.enleverBateau(boat);
 			this.placerBateau(boat, boat.getX(), boat.getY(), !boat.getVertical());
-		}else{
+		} else {
 			throw new ExceptionMouvement("Rotation impossible, réessayez");
 		}
 	}
 	
 	/*Tire sur un adversaire j2 en x,y avec un bateau boat*/
 	public boolean tirer(Joueur j2, int x, int y, Bateau boat) throws ExceptionTir, ExceptionChoixBateau {
-		if(checkTir(boat, x, y)) {
-			dernierTir[0]=x;
-			dernierTir[1]=y;
+		if (checkTir(boat, x, y)) {
+			dernierTir[0] = x;
+			dernierTir[1] = y;
 			int idTir = j2.getGrille()[y][x];
 			
-			if(idTir!=0) {			// test si tir reussi
-				dernierTir[2]=1;
+			if (idTir != 0) {			// test si tir reussi
+				dernierTir[2] = 1;
 				j2.getBateau(idTir).Touche();
 				System.out.println("Touche !");				
 				return true;
-			}else {
-				dernierTir[2]=0;
+			} else {
+				dernierTir[2] = 0;
 				System.out.println("Rate");
 				return false;
 			}
-		}else {
+		} else {
 			throw new ExceptionTir("Tir interdit (hors de portee ou hors de la grille)");
 		}
 	}
 	
 	public void updateBateau() {		// mise a jour de la liste des bateau et le nb de bateau en vie lorsque l'un est detruit
 		for (int i = 0; i < bateauList.size(); i++) {
-			if(bateauList.get(i).getVie()==0) {
+			if (bateauList.get(i).getVie() == 0) {
 				enleverBateau(bateauList.get(i));
 				nbBateau--;
-				System.out.println(bateauList.get(i).getName()+" detruit !");
+				System.out.println(bateauList.get(i).getName() + " detruit !");
 				bateauList.remove(i);		// suppression du bateau detruit
-				
 			}
 		}
 	}
@@ -232,14 +231,13 @@ public class Joueur {
 	public Bateau getBateau(int i) throws ExceptionChoixBateau {		// retourne un bateau de la liste de J selon son identfiant
 		Bateau b = null;
 		for (int j = 0; j < this.bateauList.size(); j++) {
-			if(this.bateauList.get(j).getId()==i) {
-				b=this.bateauList.get(j);
+			if (this.bateauList.get(j).getId() == i) {
+				b = this.bateauList.get(j);
 			}
 		}
-		if(b != null) {
+		if (b != null) {
 			return b;
-			}
-		else {
+		} else {
 			throw new ExceptionChoixBateau("Ce bateau n'existe pas.");
 		}
 	}
@@ -270,6 +268,4 @@ public class Joueur {
 	public int[] getDernierTir() {
 		return dernierTir;
 	}
-	
-
 }

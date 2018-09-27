@@ -1,7 +1,7 @@
 package Model;
 import Controller.*;
 
-public class PorteAvion extends Bateau{
+public class PorteAvion extends Bateau {
 	
 	private final static int viePA = VIE;	// nb de vie porte avion
 	private final static int taillePA = 5;	// taille porte avion
@@ -11,6 +11,4 @@ public class PorteAvion extends Bateau{
 	public PorteAvion(int i) {
 		super(taillePA,porteePA,i,viePA,namePA);
 	}
-	
-
 }

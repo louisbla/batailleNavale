@@ -11,6 +11,7 @@ public class main {
 		
 		Game partie = new Game();
 		partie.run();
+		
 
 	
 	}

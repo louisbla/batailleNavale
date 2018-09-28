@@ -1,0 +1,8 @@
+But : Détruire tous les bateaux adverses
+
+Comment : À tour de rôle, chaque joueur sélectionne un de ses bateaux et choisit une position où tirer à portée de ce bateau.
+Chaque bateau possède 3 vies, et perd une vie lorsqu'il est touché par un tir ennemi.
+Si un joueur tire et touche un bateau ennemi, ce bateau perd une vie et cela met fin au tour du joueur.
+Par contre, si le tir ne touche rien, le joueur a alors la possibilité de modifier la position d'un bateau de 2 cases.
+
+Fin : Le jeu se termine lorsqu'un des deux joueurs n'a plus de bateau en sa possesion.

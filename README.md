@@ -1,4 +1,5 @@
-# Devoir Bataille Navale (Louis Blasselle, Benoît Manhes, Axel Raffatin)
+# Devoir Bataille Navale
+(Louis Blasselle, Benoît Manhes, Axel Raffatin)
 
 ## Packages et classes :
 Nous avons 4 packages qui contiennent chacun plusieurs classes :

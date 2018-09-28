@@ -15,7 +15,7 @@ public class Affichage {
 	}
 	
 	public static void afficheBateauEnVie(Joueur j) {	// affiche chaque bateau en vie avec son id et sa vie
-		System.out.println("----Bateau Disponible----");
+		System.out.println("----Bateaux Disponibles----");
 		for (int i = 0; i < j.getBateauList().size(); i++) {
 			Bateau b = j.getBateauList().get(i);
 			System.out.println(b.getName() + "(" + b.getId() + ")  :    Vie = " + b.getVie());

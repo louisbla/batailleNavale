@@ -41,9 +41,9 @@ public class Game implements Runnable {
 
 		//Afficher le gagnant
 		if (J1.getNbBateau() > 0) {
-			System.out.println(J2.getName() + " gagne la partie !!");
-		}else {
 			System.out.println(J1.getName() + " gagne la partie !!");
+		}else {
+			System.out.println(J2.getName() + " gagne la partie !!");
 		}
 
 		//fin de partie, on demande aux joueurs s'ils veulent rejouer
